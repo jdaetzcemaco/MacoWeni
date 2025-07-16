@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Bot ROI Calculator - Updated 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .pricing-info {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+        .warning-box {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #dc3545;
+        }
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .input-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .results-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .result-row.total {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .alert {
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        .alert.negative {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+        .alert.positive {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        .alert.warning {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+        small {
+            color: #666;
+            font-size: 12px;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .scenario-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background: #fffbdd;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WhatsApp Bot ROI Calculator - Real Business Analysis 2025</h1>
+        
+        <div class="pricing-info">
+            <h3>📊 WhatsApp Business API Pricing (2025 Updated)</h3>
+            <ul>
+                <li><strong>Bot Base Cost:</strong> $400/month (includes 500 success fees)</li>
+                <li><strong>Additional Success Fees:</strong> $0.90 each (after first 500)</li>
+                <li><strong>Additional Orders:</strong> $0.06 each when bot generates sale</li>
+                <li><strong>WhatsApp Business API:</strong> $0.07 per business-initiated message template (Guatemala rate)</li>
+                <li><strong>User-initiated conversations:</strong> FREE for first 1,000/month, then ~$0.05 each</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Critical Reality Check:</strong> This calculator uses your actual 20% gross margin and includes ALL WhatsApp costs. Previous revenue-based calculations were misleading for business decisions.
+        </div>
+
+        <div class="highlight">
+            <strong>Key Insight:</strong> If you have 1,000 extra conversations beyond the 500 included, you'll need approximately 1,000 business-initiated WhatsApp messages at $0.07 each = $70 additional WhatsApp costs (not including the bot's success fees).
+        </div>
+
+        <div class="input-grid">
+            <div class="input-box">
+                <label>Total Conversations per Month:</label>
+                <input type="number" id="conversations" value="600" min="0">
+                <small>All customer interactions (24-hour sessions)</small>
+            </div>
+            
+            <div class="input-box">
+                <label>Orders Generated per Month:</label>
+                <input type="number" id="orders" value="22" min="0">
+                <small>Actual sales completed through bot</small>
+            </div>
+            
+            <div class="input-box">
+                <label>Business-Initiated Messages:</label>
+                <input type="number" id="businessMessages" value="600" min="0">
+                <small>Messages you send to start conversations (≈ same as total conversations)</small>
+            </div>
+            
+            <div class="input-box">
+                <label>Average Order Value (Q):</label>
+                <input type="number" id="orderValue" value="1200" min="0">
+                <small>Your current baseline order size</small>
+            </div>
+            
+            <div class="input-box">
+                <label>Gross Margin (%):</label>
+                <input type="number" id="margin" value="20" min="0" max="100" step="0.1">
+                <small>Your actual profit percentage per sale</small>
+            </div>
+            
+            <div class="input-box">
+                <label>Cross-sell/Upsell Uplift (%):</label>
+                <input type="number" id="upsell" value="25" min="0" max="200" step="1">
+                <small>Expected order value increase with bot assistance</small>
+            </div>
+        </div>
+
+        <div class="scenario-buttons">
+            <button onclick="calculate()">🔄 Calculate ROI</button>
+            <button onclick="setScenario('conservative')">📉 Conservative (40 orders)</button>
+            <button onclick="setScenario('moderate')">📊 Moderate (90 orders)</button>
+            <button onclick="setScenario('aggressive')">📈 Aggressive (200 orders)</button>
+            <button onclick="setScenario('breakeven')">⚖️ Break-Even Point</button>
+        </div>
+
+        <div class="results-box" id="results">
+            <h3>Click "Calculate ROI" to see results</h3>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            // Get input values
+            var conversations = Number(document.getElementById('conversations').value) || 0;
+            var orders = Number(document.getElementById('orders').value) || 0;
+            var businessMessages = Number(document.getElementById('businessMessages').value) || 0;
+            var orderValue = Number(document.getElementById('orderValue').value) || 0;
+            var margin = Number(document.getElementById('margin').value) || 0;
+            var upsell = Number(document.getElementById('upsell').value) || 0;
+
+            // Bot costs
+            var baseBotCost = 400; // USD
+            var additionalConversations = Math.max(0, conversations - 500);
+            var botConversationCost = additionalConversations * 0.90;
+            var botOrderCost = orders * 0.06;
+            var totalBotCost = baseBotCost + botConversationCost + botOrderCost;
+
+            // WhatsApp API costs (Guatemala rates)
+            var whatsappBusinessInitiated = businessMessages * 0.07; // Business-initiated template messages
+            var userInitiatedFree = 1000; // First 1000 user-initiated are free
+            var userInitiatedPaid = Math.max(0, conversations - userInitiatedFree) * 0.05; // Additional user-initiated
+            var totalWhatsAppCost = whatsappBusinessInitiated + userInitiatedPaid;
+
+            // Total costs
+            var totalCostUSD = totalBotCost + totalWhatsAppCost;
+            var totalCostQ = totalCostUSD * 7.7;
+
+            // Calculate profits with upselling
+            var enhancedOrderValue = orderValue * (1 + upsell / 100);
+            var revenue = orders * enhancedOrderValue;
+            var grossProfit = revenue * (margin / 100);
+            var netProfit = grossProfit - totalCostQ;
+            var roi = totalCostQ > 0 ? (netProfit / totalCostQ) * 100 : 0;
+            var conversionRate = conversations > 0 ? (orders / conversations) * 100 : 0;
+            var profitPerOrder = grossProfit / orders;
+            var breakEvenOrders = Math.ceil(totalCostQ / (profitPerOrder || 1));
+
+            // Build results
+            var html = '<h3>Monthly Cost & Profit Analysis</h3>';
+            
+            // Bot costs
+            html += '<div class="result-row"><span>Bot Base Cost (500 conversations):</span><span>$400.00</span></div>';
+            html += '<div class="result-row"><span>Bot Extra Conversations (' + additionalConversations + ' × $0.90):</span><span>$' + botConversationCost.toFixed(2) + '</span></div>';
+            html += '<div class="result-row"><span>Bot Order Fees (' + orders + ' × $0.06):</span><span>$' + botOrderCost.toFixed(2) + '</span></div>';
+            html += '<div class="result-row"><span><strong>Total Bot Cost:</strong></span><span><strong>$' + totalBotCost.toFixed(2) + '</strong></span></div>';
+            
+            // WhatsApp costs
+            html += '<div class="result-row" style="margin-top: 10px;"><span>WhatsApp Business Messages (' + businessMessages + ' × $0.07):</span><span>$' + whatsappBusinessInitiated.toFixed(2) + '</span></div>';
+            html += '<div class="result-row"><span>WhatsApp Extra User Messages (' + Math.max(0, conversations - userInitiatedFree) + ' × $0.05):</span><span>$' + userInitiatedPaid.toFixed(2) + '</span></div>';
+            html += '<div class="result-row"><span><strong>Total WhatsApp Cost:</strong></span><span><strong>$' + totalWhatsAppCost.toFixed(2) + '</strong></span></div>';
+            
+            // Total
+            html += '<div class="result-row total"><span>TOTAL MONTHLY COST:</span><span>$' + totalCostUSD.toFixed(2) + ' (Q' + totalCostQ.toFixed(0) + ')</span></div>';
+
+            // Profit analysis
+            html += '<h3 style="margin-top: 20px;">Profit Analysis (' + margin + '% Margin + ' + upsell + '% Upsell)</h3>';
+            html += '<div class="result-row"><span>Base Orders (' + orders + ' × Q' + orderValue + '):</span><span>Q' + (orders * orderValue).toLocaleString() + '</span></div>';
+            html += '<div class="result-row"><span>Enhanced Orders (' + orders + ' × Q' + enhancedOrderValue.toFixed(0) + '):</span><span>Q' + revenue.toLocaleString() + '</span></div>';
+            html += '<div class="result-row"><span>Gross Profit (' + margin + '% margin):</span><span>Q' + grossProfit.toFixed(0) + '</span></div>';
+            html += '<div class="result-row"><span>Total Costs:</span><span>Q' + totalCostQ.toFixed(0) + '</span></div>';
+            html += '<div class="result-row total"><span>NET PROFIT:</span><span style="color: ' + (netProfit > 0 ? '#90EE90' : '#FFB6C1') + '">Q' + netProfit.toFixed(0) + '</span></div>';
+            html += '<div class="result-row total"><span>ROI:</span><span style="color: ' + (roi > 0 ? '#90EE90' : '#FFB6C1') + '">' + roi.toFixed(1) + '%</span></div>';
+
+            var alertClass = roi > 50 ? 'positive' : roi > 0 ? 'warning' : 'negative';
+            var message = roi > 100 ? '🚀 Excellent ROI! Very profitable business case.' : 
+                         roi > 50 ? '✅ Good ROI. Profitable with optimization.' :
+                         roi > 0 ? '⚠️ Marginally profitable. Need higher conversion or volume.' : 
+                         '❌ Not profitable. Major changes needed.';
+
+            html += '<div class="alert ' + alertClass + '">';
+            html += '<strong>Business Reality Check:</strong><br>';
+            html += '• Conversion Rate: ' + conversionRate.toFixed(2) + '% (vs 0.5% website)<br>';
+            html += '• Profit per Order (with upsell): Q' + (profitPerOrder || 0).toFixed(0) + '<br>';
+            html += '• Break-even Orders Needed: ' + breakEvenOrders + ' per month<br>';
+            html += '• Current Shortfall: ' + Math.max(0, breakEvenOrders - orders) + ' more orders needed<br>';
+            html += '• Upsell Impact: Q' + orderValue + ' → Q' + enhancedOrderValue.toFixed(0) + ' (+' + (enhancedOrderValue - orderValue).toFixed(0) + ' per order)<br>';
+            html += message;
+            html += '</div>';
+
+            document.getElementById('results').innerHTML = html;
+        }
+
+        function setScenario(type) {
+            if (type === 'conservative') {
+                document.getElementById('conversations').value = 400;
+                document.getElementById('orders').value = 40;
+                document.getElementById('businessMessages').value = 400;
+                document.getElementById('upsell').value = 15;
+            } else if (type === 'moderate') {
+                document.getElementById('conversations').value = 600;
+                document.getElementById('orders').value = 90;
+                document.getElementById('businessMessages').value = 600;
+                document.getElementById('upsell').value = 25;
+            } else if (type === 'aggressive') {
+                document.getElementById('conversations').value = 1000;
+                document.getElementById('orders').value = 200;
+                document.getElementById('businessMessages').value = 1000;
+                document.getElementById('upsell').value = 40;
+            } else if (type === 'breakeven') {
+                // Calculate approximate break-even scenario
+                document.getElementById('conversations').value = 1000;
+                document.getElementById('orders').value = 150;
+                document.getElementById('businessMessages').value = 1000;
+                document.getElementById('upsell').value = 30;
+            }
+            calculate();
+        }
+
+        // Auto-calculate when inputs change
+        document.getElementById('conversations').addEventListener('input', calculate);
+        document.getElementById('orders').addEventListener('input', calculate);
+        document.getElementById('businessMessages').addEventListener('input', calculate);
+        document.getElementById('orderValue').addEventListener('input', calculate);
+        document.getElementById('margin').addEventListener('input', calculate);
+        document.getElementById('upsell').addEventListener('input', calculate);
+
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>
